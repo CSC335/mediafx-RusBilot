@@ -26,11 +26,17 @@ public class PlayAnMP3 extends Application {
   private int songsPlayed = 0;
 
   @Override
+  
+  // comment by Rus
   public void start(Stage stage) throws Exception {
     BorderPane pane = new BorderPane();
-    String path = "songfiles/Capture.mp3";
-    pane.setCenter( new Label(path));
+    // Rus changed song to SwingCheese
+    String path = "songfiles/SwingCheese.mp3";
+    
+    // Rus swapped two lines of code
     playASong(path);
+    pane.setCenter( new Label(path));
+    
     // Put the pane in a sized Scene and show the GUI
     Scene scene = new Scene(pane, 255, 85); // 255 pixels wide, 85 pixels tall
     stage.setScene(scene);
@@ -38,13 +44,16 @@ public class PlayAnMP3 extends Application {
     stage.show();
   }
 
-  
+  // method which plays a song given the path to the song file
   private void playASong(String path) {
    
     // Need a File and URI object so the path works on all OSs
     File file = new File(path);
     URI uri = file.toURI();
-    System.out.println(uri);
+    
+    // Rus changed to print and manually inserted a newline
+    System.out.print(uri);
+    System.out.print('\n');
     // Play one mp3 and and have code run when the song ends
     Media media = new Media(uri.toString());
     MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -55,10 +64,12 @@ public class PlayAnMP3 extends Application {
  
     }
   
+
   private class Waiter implements Runnable {
     @Override
     public void run() {
-      songsPlayed++;
+      // Rus changed to songsPlayed += 1
+      songsPlayed += 1;
       System.out.println("Song ended, play song #" + songsPlayed);
       Platform.exit();
     }
